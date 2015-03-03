@@ -5,16 +5,48 @@
   <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css">
 </head>
 <body ng-app="TimeTrackerApp">
-  <md-content>
-    <md-toolbar>
-      <h2 class="md-toolbar-tools">
-        <span>Time Tracker</span>
-      </h2>
-    </md-toolbar>
-    <div ng-controller="AppController">
-      <h1>{{message}}</h1>
-    </div>
-  </md-content>
+  <div layout="column" layout-fill>
+    <section layout="row" flex>
+      <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-md')">
+        <md-toolbar class="md-theme-indigo">
+          <h1 class="md-toolbar-tools">Menu</h1>
+        </md-toolbar>
+        <md-content class="md-padding" ng-controller="SideNavController">
+          <md-button ng-click="close()" class="md-primary" hide-gt-md>
+            Close Sidenav Left
+          </md-button>
+          <p hide-md show-gt-md>
+            This sidenav is locked open on your device. To go back to the default behavior,
+            narrow your display.
+          </p>
+        </md-content>
+      </md-sidenav>
+      <md-content flex>
+        <div layout="column" layout-fill layout-align="center center">
+          <md-toolbar>
+            <h2 class="md-toolbar-tools">
+              <span>Time Tracker</span>
+            </h2>
+          </md-toolbar>
+          <md-content class="md-padding">
+            <div ng-controller="AppController">
+              <p>{{message}}</p>
+
+              <div>
+                <md-button ng-click="toggleLeft()"
+                  class="md-primary" hide-gt-md>
+                  Toggle left
+                </md-button>
+              </div>
+            </div>
+          </md-content>
+          
+        </div>
+      </md-content>
+    </section>
+    
+  </div>
+  
   
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/angular-animate/angular-animate.min.js"></script>
@@ -26,5 +58,6 @@
   <script type="text/javascript" src="js/services.js"></script>
 
   <script type="text/javascript" src="js/shared/app/app.controller.js"></script>
+  <script type="text/javascript" src="js/shared/sidenav/sidenav.controller.js"></script>
 </body>
 </html>
