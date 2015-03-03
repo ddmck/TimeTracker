@@ -1,0 +1,1 @@
+angular.module("TimeTrackerApp", ['ngMaterial', 'TimeTrackerControllers', 'TimeTrackerServices'])
