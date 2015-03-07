@@ -1,0 +1,1 @@
+angular.module('TimeTrackerControllers', ['AppController', 'SideNav', 'NewTasks'])

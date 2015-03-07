@@ -22,7 +22,7 @@
         </md-content>
       </md-sidenav>
       <md-content flex>
-        <div layout="column" layout-fill layout-align="center center">
+        <div layout="column" layout-fill>
           <md-toolbar>
             <h2 class="md-toolbar-tools">
               <span>Time Tracker</span>
@@ -30,7 +30,47 @@
           </md-toolbar>
           <md-content class="md-padding">
             <div ng-controller="AppController">
-              <p>{{message}}</p>
+              <div ng-controller="NewTasksController">
+                <form button-form ng-model="task" ng-submit="submit(task)" ng-init="{}">
+                <md-content class="md-padding" layout="row" layout-sm="column" layout-fill layout-align="start center" >
+                
+                  <md-input-container>
+                    <label>Description</label>
+                    <input type="text" ng-model="task.description" required md-minlength="1">
+                  </md-input-container>
+
+                  <md-input-container>
+                    <label>Remind me in</label>
+                    <input type="number" ng-model="task.remindEvery" required md-minlength="1">
+                  </md-input-container>
+                  <md-content>
+                    <md-button value="submit" class="md-primary" >
+                      Add Task
+                    </md-button>
+                  </md-content>
+               
+                </md-content>
+                 </form>
+                <md-content class="md-padding" layout="column">
+                  <md-list>
+                    <md-item ng-repeat="item in tasks">
+                      <md-item-content>
+                        <div class="md-tile-left">
+                          <md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+                        </div>
+                        <div class="md-tile-content">
+                          <h3>{{item.description}}</h3>
+                          <h4>{{item.remindEvery}}</h4>
+                          <p>
+                            {{item.notes}}
+                          </p>
+                        </div>
+                      </md-item-content>
+                    </md-item>
+                  </md-list>
+                </md-content>
+              </div>
+                
 
               <div>
                 <md-button ng-click="toggleLeft()"
@@ -59,5 +99,7 @@
 
   <script type="text/javascript" src="js/shared/app/app.controller.js"></script>
   <script type="text/javascript" src="js/shared/sidenav/sidenav.controller.js"></script>
+
+  <script type="text/javascript" src="js/components/new-tasks/new-tasks.controller.js"></script>
 </body>
 </html>
